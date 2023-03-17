@@ -9,8 +9,17 @@ public class Rocket : MonoBehaviour
     [SerializeField] private float _thrustPower = 10f;
     [SerializeField] private float _rotationPower = 20f;
     [SerializeField] private AudioClip _thrustSound;
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private AudioClip _winSound;
+
+    [SerializeField] private ParticleSystem _thrustParticle;
+    [SerializeField] private ParticleSystem _winParticle;
+    [SerializeField] private ParticleSystem _damageParticle;
 
     private AudioSource _audioSource;
+
+    enum State { ALIVE, DIYING, TRASENDING};
+    State currentState = State.ALIVE;
 
     void Start()
     {
@@ -20,9 +29,12 @@ public class Rocket : MonoBehaviour
 
     void Update()
     {
-        ApplyThrust();
+        if(currentState == State.ALIVE)
+        {
+            ApplyThrust();
 
-        ApplyRotation();
+            ApplyRotation();
+        }
 
     }
 
@@ -35,10 +47,12 @@ public class Rocket : MonoBehaviour
             {
                 _audioSource.PlayOneShot(_thrustSound);
             }
+            _thrustParticle.Play();
         }
         else
         {
             _audioSource.Stop();
+            _thrustParticle.Stop();
         }
     } // Apply thrust
 
@@ -66,14 +80,37 @@ public class Rocket : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Freindly":
-                LoadNextLevel();
+                NextLevelSequence();
                 break;
             case "Obstacle":
-                SceneManager.LoadScene(0);
+                PreviousLevelSequence();
                 break;
             default:
                 break;
         }
+    }
+
+    private void PreviousLevelSequence()
+    {
+        currentState = State.DIYING;
+        _audioSource.Stop();
+        _audioSource.PlayOneShot(_hitSound);
+        _damageParticle.Play();
+        Invoke("LoadPreviousLevel", 1f);
+    }
+
+    private void NextLevelSequence()
+    {
+        currentState = State.TRASENDING;
+        _audioSource.Stop();
+        _audioSource.PlayOneShot(_winSound);
+        _winParticle.Play();
+        Invoke("LoadNextLevel", 1f);
+    }
+
+    private void LoadPreviousLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void LoadNextLevel()
