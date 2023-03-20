@@ -17,7 +17,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] private ParticleSystem _thrustParticle;
     [SerializeField] private ParticleSystem _winParticle;
     [SerializeField] private ParticleSystem _damageParticle;
-    [SerializeField] private int _fuelCount = 100;
+    [SerializeField] private static int _fuelCount = 100;
 
     [SerializeField] private float _fuelReduceTime = 0.8f;
     [SerializeField] private float _fuelTime;
@@ -33,6 +33,7 @@ public class Rocket : MonoBehaviour
     {
         _rBody = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
+        _fuelCount = 100;
     }
 
     void Update()

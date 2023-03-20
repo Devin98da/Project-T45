@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private TextMeshProUGUI _levelText;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        LevelUpdate();
     }
 
     // pause menu
@@ -27,8 +23,27 @@ public class UIManager : MonoBehaviour
         // game should pause untile unpause
     }
 
+    // resume button
     public void OnClickResumeButton()
     {
         Time.timeScale = 1;
+    }
+
+    // restart button
+    public void OnClickRestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+
+    //exit to main menu button
+    public void OnClickExitButton()
+    {
+
+    }
+
+    public void LevelUpdate()
+    {
+        _levelText.text = "Level - " + (SceneManager.GetActiveScene().buildIndex + 1).ToString();
     }
 }
