@@ -19,6 +19,9 @@ public class Rocket : MonoBehaviour
     [SerializeField] private ParticleSystem _damageParticle;
     [SerializeField] private int _fuelCount = 100;
 
+    [SerializeField] private float _fuelReduceTime = 0.8f;
+    [SerializeField] private float _fuelTime;
+
     [SerializeField] private TextMeshProUGUI _fuelText;
 
     private AudioSource _audioSource;
@@ -34,7 +37,7 @@ public class Rocket : MonoBehaviour
 
     void Update()
     {
-        if(currentState == State.ALIVE)
+        if(currentState == State.ALIVE && _fuelCount > 0 )
         {
             ApplyThrust();
 
@@ -136,7 +139,12 @@ public class Rocket : MonoBehaviour
 
     private void FuelControl()
     {
-        _fuelCount--;
+        if(Time.time > _fuelTime)
+        {
+            _fuelTime = Time.time + _fuelReduceTime;
+            _fuelCount--;
+        }
+
         if(_fuelCount < 0)
         {
             _fuelCount = 0;
@@ -148,6 +156,10 @@ public class Rocket : MonoBehaviour
     private void AddFuel()
     {
         _fuelCount += 100;
+        if(_fuelCount > 100)
+        {
+            _fuelCount = 100;
+        }
         _fuelText.text = "Fuel - " + _fuelCount.ToString();
         // add fuel to rocket
     }
