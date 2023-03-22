@@ -34,16 +34,21 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
+        Rocket._fuelCount = 100;
     }
 
     //exit to main menu button
     public void OnClickExitButton()
     {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        Rocket._fuelCount = 100;
+
 
     }
 
     public void LevelUpdate()
     {
-        _levelText.text = "Level - " + (SceneManager.GetActiveScene().buildIndex + 1).ToString();
+        _levelText.text = "Level - " + (SceneManager.GetActiveScene().buildIndex).ToString();
     }
 }

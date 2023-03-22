@@ -17,12 +17,13 @@ public class Rocket : MonoBehaviour
     [SerializeField] private ParticleSystem _thrustParticle;
     [SerializeField] private ParticleSystem _winParticle;
     [SerializeField] private ParticleSystem _damageParticle;
-    [SerializeField] private static int _fuelCount = 100;
+    public static int _fuelCount = 100;
 
     [SerializeField] private float _fuelReduceTime = 0.8f;
     [SerializeField] private float _fuelTime;
 
     [SerializeField] private TextMeshProUGUI _fuelText;
+    private bool _hasCollide = false;
 
     private AudioSource _audioSource;
 
@@ -33,7 +34,7 @@ public class Rocket : MonoBehaviour
     {
         _rBody = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
-        _fuelCount = 100;
+
     }
 
     void Update()
@@ -90,10 +91,18 @@ public class Rocket : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Freindly":
-                NextLevelSequence();
+                if (!_hasCollide)
+                {
+                    NextLevelSequence();
+                    _hasCollide = true;
+                }
                 break;
             case "Obstacle":
-                PreviousLevelSequence();
+                if (!_hasCollide)
+                {
+                    PreviousLevelSequence();
+                    _hasCollide = true;
+                }
                 break;
             default:
                 break;
@@ -117,6 +126,7 @@ public class Rocket : MonoBehaviour
         _audioSource.PlayOneShot(_hitSound);
         _damageParticle.Play();
         Invoke("LoadPreviousLevel", _levelLoadDelay);
+        _fuelCount = 100;
     }
 
     private void NextLevelSequence()
@@ -130,7 +140,15 @@ public class Rocket : MonoBehaviour
 
     private void LoadPreviousLevel()
     {
-        SceneManager.LoadScene(0);
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            SceneManager.LoadScene(1);
+        }else if(SceneManager.GetActiveScene().buildIndex > 1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        }
+
     }
 
     private void LoadNextLevel()
