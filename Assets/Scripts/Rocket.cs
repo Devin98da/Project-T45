@@ -131,10 +131,10 @@ public class Rocket : MonoBehaviour
 
     private void NextLevelSequence()
     {
-        currentState = State.TRASENDING;
         _audioSource.Stop();
         _audioSource.PlayOneShot(_winSound);
         _winParticle.Play();
+        currentState = State.TRASENDING;
         Invoke("LoadNextLevel", _levelLoadDelay);
     }
 

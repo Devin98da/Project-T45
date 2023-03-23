@@ -17,4 +17,14 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    //exit to main menu button
+    public void OnClickExitButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        Rocket._fuelCount = 100;
+
+
+    }
 }

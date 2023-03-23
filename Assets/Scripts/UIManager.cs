@@ -9,6 +9,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private TextMeshProUGUI _levelText;
 
+    public static UIManager Instance;
+    private UIManager _instance;
+
+    private void Awake()
+    {
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+    }
+
     private void Update()
     {
         LevelUpdate();
@@ -51,4 +62,5 @@ public class UIManager : MonoBehaviour
     {
         _levelText.text = "Level - " + (SceneManager.GetActiveScene().buildIndex).ToString();
     }
+
 }
