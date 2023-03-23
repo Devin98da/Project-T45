@@ -120,10 +120,10 @@ TextureImporter:
       name: how to paly_0
       rect:
         serializedVersion: 2
-        x: 134
-        y: 529
-        width: 887
-        height: 172
+        x: 170
+        y: 532
+        width: 837
+        height: 169
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c67ce83b192a11478dc8766f3f389e2
-      internalID: 1792985018
+      spriteID: db23f60ba8b3ef348b7262d2c1c8f227
+      internalID: -1207355745
       vertices: []
       indices: 
       edges: []
@@ -141,10 +141,10 @@ TextureImporter:
       name: how to paly_1
       rect:
         serializedVersion: 2
-        x: 204
-        y: 267
-        width: 983
-        height: 236
+        x: 231
+        y: 270
+        width: 941
+        height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f30aae35e895774f963d880a28ce976
-      internalID: 1742283637
+      spriteID: 304bbf2da5a1b0e4aa766a7033287f74
+      internalID: 1123773412
       vertices: []
       indices: 
       edges: []
@@ -162,10 +162,10 @@ TextureImporter:
       name: how to paly_2
       rect:
         serializedVersion: 2
-        x: 21
-        y: 45
-        width: 1244
-        height: 89
+        x: 29
+        y: 16
+        width: 1144
+        height: 182
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7252ca7f309db148bc74eb4ed0e34f2
-      internalID: -475330813
+      spriteID: 55a5b9c388f85724c84e2cd125b2d733
+      internalID: 387188519
       vertices: []
       indices: 
       edges: []
@@ -182,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0a6d105b265b92347990cc7622ba4cd1
+    spriteID: 66a631521c869d548aa608b2071ce109
     internalID: 0
     vertices: []
     indices: 
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      how to paly_1: 1742283637
-      how to paly_2: -475330813
-      how to paly_0: 1792985018
+      how to paly_1: 1123773412
+      how to paly_2: 387188519
+      how to paly_0: -1207355745
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1

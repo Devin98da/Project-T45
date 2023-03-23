@@ -126,7 +126,7 @@ public class Rocket : MonoBehaviour
         _audioSource.PlayOneShot(_hitSound);
         _damageParticle.Play();
         Invoke("LoadPreviousLevel", _levelLoadDelay);
-        _fuelCount = 100;
+
     }
 
     private void NextLevelSequence()
@@ -148,7 +148,7 @@ public class Rocket : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
         }
-
+        _fuelCount = 100;
     }
 
     private void LoadNextLevel()
@@ -164,9 +164,10 @@ public class Rocket : MonoBehaviour
             _fuelCount--;
         }
 
-        if(_fuelCount < 0)
+        if(_fuelCount < 1)
         {
             _fuelCount = 0;
+            PreviousLevelSequence();
         }
         _fuelText.text = "Fuel - " + _fuelCount.ToString();
 
